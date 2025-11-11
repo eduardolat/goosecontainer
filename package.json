@@ -1,0 +1,33 @@
+{
+  "name": "goosecontainer",
+  "version": "1.0.0",
+  "description": "Container integration for Goose via developer MCP",
+  "main": "./src/main.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eduardolat/goosecontainer.git"
+  },
+  "keywords": [],
+  "author": "Luis Jeréz",
+  "license": "MIT",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/eduardolat/goosecontainer/issues"
+  },
+  "homepage": "https://github.com/eduardolat/goosecontainer#readme",
+  "scripts": {
+    "prepare": "husky",
+    "precommit": "npm run fmt",
+    "start": "node ./src/main.ts",
+    "fmt": "prettier --write ."
+  },
+  "dependencies": {
+    "dockerode": "4.0.9"
+  },
+  "devDependencies": {
+    "@types/dockerode": "3.3.45",
+    "@types/node": "24.10.0",
+    "husky": "9.1.7",
+    "prettier": "3.6.2"
+  }
+}
