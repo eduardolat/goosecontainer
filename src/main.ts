@@ -58,14 +58,16 @@ async function copyFileToContainer(
     stream.write(fileContent);
     stream.end();
 
-    stream.on("end", () => {
-      exec.inspect().then((info) => {
-        if (info.ExitCode !== 0) {
-          reject(new Error(`Failed to copy file, exit code ${info.ExitCode}`));
-        } else {
-          resolve();
-        }
-      });
+    stream.on("end", async () => {
+      // Wait a bit for the exec to finish and be inspectable
+      await new Promise((r) => setTimeout(r, 100));
+
+      const info = await exec.inspect();
+      if (info.ExitCode !== 0 && info.ExitCode !== null) {
+        reject(new Error(`Failed to copy file, exit code ${info.ExitCode}`));
+      } else {
+        resolve();
+      }
     });
     stream.on("error", reject);
   });
@@ -85,14 +87,16 @@ async function executeCommandInContainer(
   const stream = await exec.start({ hijack: true, stdin: false });
 
   return new Promise<void>((resolve, reject) => {
-    stream.on("end", () => {
-      exec.inspect().then((info) => {
-        if (info.ExitCode !== 0) {
-          reject(new Error(`Command failed with exit code ${info.ExitCode}`));
-        } else {
-          resolve();
-        }
-      });
+    stream.on("end", async () => {
+      // Wait a bit for the exec to finish and be inspectable
+      await new Promise((r) => setTimeout(r, 100));
+
+      const info = await exec.inspect();
+      if (info.ExitCode !== 0 && info.ExitCode !== null) {
+        reject(new Error(`Command failed with exit code ${info.ExitCode}`));
+      } else {
+        resolve();
+      }
     });
     stream.on("error", reject);
   });
