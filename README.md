@@ -51,8 +51,10 @@ To test the tool, you can start a test container:
 docker run --rm -it --name gc-test debian bash
 ```
 
-Then, in another terminal, run:
+Then, in goose create and activate a new stdin extension with the following command:
 
 ```bash
 node /path/to/goosecontainer/src/main.ts gc-test
 ```
+
+<img src="screenshot.png" alt="Goose Developer For Containers" />
