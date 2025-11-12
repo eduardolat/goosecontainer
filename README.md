@@ -15,7 +15,7 @@ This tool enables running Goose MCP developer inside Docker containers. It autom
 
 ## Installation
 
-It requires Node.js v23.6.0 or higher.
+It requires Node.js v22.18 or higher.
 
 1. Clone the repository:
 
