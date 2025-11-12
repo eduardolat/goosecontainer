@@ -1,4 +1,4 @@
-# goosecontainer
+# Goose Developer For Containers
 
 Container integration for Goose via developer MCP
 
